@@ -1,0 +1,465 @@
+#Part 1.1:
+#
+
+  files = open(r"C:\Users\People.txt", 'r')
+name_list = files.read().strip().split()
+print(name_list)
+#Bubble sort - simplest sorting algorithm that works by repeatedly
+# swapping the adjacent element if they are in wrong order
+# def bubbleSorrt(n_list):
+#     n = len(n_list)
+#     for i in range(n-1):
+#         for j in range(0, n-i-1):
+#             if n_list[j]>n_list[j+1]:
+#                 n_list[j],n_list[j+1]=n_list[j+1],n_list[j]
+#     return n_list
+
+# print(bubbleSorrt(name_list))
+
+#Merge sort - repeatedly breaks down a list into several
+# sublists until each sublist consists of a single element and merging
+# those sublists in a manner that results into a sorted list.
+
+# def mergeSort(arr):
+#     if len(arr) > 1:
+#
+#         # Finding the mid of the array
+#         mid = len(arr) // 2
+#
+#         # Dividing the array elements
+#         L = arr[:mid]
+#
+#         # into 2 halves
+#         R = arr[mid:]
+#
+#         # Sorting the first half
+#         mergeSort(L)
+#
+#         # Sorting the second half
+#         mergeSort(R)
+#
+#         i = j = k = 0
+#
+#         # Copy data to temp arrays L[] and R[]
+#         while i < len(L) and j < len(R):
+#             if L[i] < R[j]:
+#                 arr[k] = L[i]
+#                 i += 1
+#             else:
+#                 arr[k] = R[j]
+#                 j += 1
+#             k += 1
+#
+#         # Checking if any element was left
+#         while i < len(L):
+#             arr[k] = L[i]
+#             i += 1
+#             k += 1
+#
+#         while j < len(R):
+#             arr[k] = R[j]
+#             j += 1
+#             k += 1
+#
+#
+# # Code to print the list
+#
+#
+# def printList(arr):
+#     for i in range(len(arr)):
+#         print(arr[i], end=" ")
+#     print()
+#
+#
+# # Driver Code
+# # if __name__ == '__main__':
+# #     arr = [12, 11, 13, 5, 6, 7]
+# print("Given array is", end="\n")
+# printList(name_list)
+# mergeSort(name_list)
+# print("Sorted array is: ", end="\n")
+# printList(name_list)
+
+# Quick Sort -  It picks an element as pivot
+# and partitions the given array around the picked pivot.
+# def partition(start, end, na_list):
+#     # Initializing pivot's index to start
+#     pivot_index = start
+#     pivot = na_list[pivot_index]
+#
+#     # This loop runs till start pointer crosses
+#     # end pointer, and when it does we swap the
+#     # pivot with element on end pointer
+#     while start < end:
+#
+#         # Increment the start pointer till it finds an
+#         # element greater than  pivot
+#         while start < len(na_list) and na_list[start] <= pivot:
+#             start += 1
+#
+#         # Decrement the end pointer till it finds an
+#         # element less than pivot
+#         while na_list[end] > pivot:
+#             end -= 1
+#
+#         # If start and end have not crossed each other,
+#         # swap the numbers on start and end
+#         if (start < end):
+#             na_list[start], na_list[end] = na_list[end], na_list[start]
+#
+#     # Swap pivot element with element on end pointer.
+#     # This puts pivot on its correct sorted place.
+#     na_list[end], na_list[pivot_index] = na_list[pivot_index], na_list[end]
+#
+#     # Returning end pointer to divide the array into 2
+#     return end
+#
+#
+# # The main function that implements QuickSort
+# def quick_sort(start, end, nList):
+#     if (start < end):
+#         # p is partitioning index, array[p]
+#         # is at right place
+#         p = partition(start, end, nList)
+#
+#         # Sort elements before partition
+#         # and after partition
+#         quick_sort(start, p - 1, nList)
+#         quick_sort(p + 1, end, nList)
+#
+#
+# # Driver code
+#
+# quick_sort(0, len(name_list) - 1, name_list)
+#
+# print(f'Sorted array: {name_list}')
+#
+#1.2	Implement and compare searching algorithms
+
+## Linear Search
+files = open(r"Sorted_names.csv","r")
+data = files.read().strip().split('\n')
+print(data)
+# def linear_search(search_list, name):
+#     for i in range(len(search_list)):
+#         if search_list[i].lower() == name.lower():
+#             Text = f'{name} existing in index postion {i} in the list'
+#             return Text
+#     return -1
+#
+# search_name = input("Enter a name and search if its existing in the list: ")
+# print(linear_search(data,search_name))
+# binary Search
+# Returns index of x in arr if present, else -1
+# pos = -1
+# def binarySearch(list, n):
+#     l = 0
+#     u = len(list)-1
+#     while (l <= u):
+#         mid = (l + u) // 2
+#         if list[mid]== n:
+#            globals() ['pos'] = mid
+#            return True
+#         else:
+#             if list[mid]< n:
+#                 l = mid+1
+#             else:
+#                 u = mid-1
+#     return False
+
+
+# Driver Code
+# if __name__ == "__main__":
+#
+#     list = data
+#     n = input("Enter the element you are searching")
+#     if binarySearch(list,n):
+#         print("Element found at", pos + 1)
+#     else:
+#         print("Element not found")
+
+# This code is contributed by ita_c
+
+
+###########Exponential search
+# Exponential search involves two steps:
+#
+# Find range where element is present
+# Do Binary Search in above found range
+# Python program to find an element x
+# in a sorted array using Exponential Search
+
+# A recurssive binary search function returns
+# location  of x in given array arr[l..r] is
+# present, otherwise -1
+# def binarySearch(arr, l, r, x):
+#     if r >= l:
+#         mid = l + (r - l) / 2
+# 
+#         # If the element is present at
+#         # the middle itself
+#         if arr[mid] == x:
+#             return mid
+# 
+#         # If the element is smaller than mid,
+#         # then it can only be present in the
+#         # left subarray
+#         if arr[mid] > x:
+#             return binarySearch(arr, l,
+#                                 mid - 1, x)
+# 
+#         # Else he element can only be
+#         # present in the right
+#         return binarySearch(arr, mid + 1, r, x)
+# 
+#     # We reach here if the element is not present
+#     return -1
+# 
+# 
+# # Returns the position of first
+# # occurrence of x in array
+# def exponentialSearch(arr, n, x):
+#     # IF x is present at first
+#     # location itself
+#     if arr[0] == x:
+#         return 0
+# 
+#     # Find range for binary search
+#     # j by repeated doubling
+#     i = 1
+#     while i < n and arr[i] <= x:
+#         i = i * 2
+# 
+#     # Call binary search for the found range
+#     return binarySearch(arr, i / 2,
+#                         min(i, n - 1), x)
+# 
+# 
+# # Driver Code
+# arr = data
+# n = len(data)
+# x = input("Enter the element you are searching: ")
+# result = exponentialSearch(arr, n, x)
+# if result == -1:
+#     print("Element not found in the array")
+# else:
+#     print("Element is present at index %d" % (result))
+
+# 1.3 Implement and analyse data structure: doubly linked list
+
+class Node:
+   def __init__(self,data):
+      self.data = data
+      self.next = None
+      self.prev = None
+
+class DoublyLinkedList:
+   def __init__(self):
+      self.head = None
+
+   def append(self,data):
+      if self.head is None:
+         new_node = Node(data)
+         new_node.prev = None
+         self.head = new_node
+      else:
+         new_node = Node(data)
+         cur = self.head
+         while cur.next:
+            cur = cur.next
+         cur.next = new_node
+         new_node.prev = cur
+         new_node.next = None
+
+   def prepend(self, data):
+      if self.head is None:
+         new_node = Node(data)
+         new_node.prev = None
+         self.head = new_node
+      else:
+         new_node = Node(data)
+         self.head.prev = new_node
+         new_node.next = self.head
+         self.head = new_node# class Node:
+#    def __init__(self,data):
+#       self.data = data
+#       self.next = None
+#       self.prev = None
+# 
+# class DoublyLinkedList:
+#    def __init__(self):
+#       self.head = None
+# 
+#    def append(self,data):
+#       if self.head is None:
+#          new_node = Node(data)
+#          new_node.prev = None
+#          self.head = new_node
+#       else:
+#          new_node = Node(data)
+#          cur = self.head
+#          while cur.next:
+#             cur = cur.next
+#          cur.next = new_node
+#          new_node.prev = cur
+#          new_node.next = None
+# 
+#    def prepend(self, data):
+#       if self.head is None:
+#          new_node = Node(data)
+#          new_node.prev = None
+#          self.head = new_node
+#       else:
+#          new_node = Node(data)
+#          self.head.prev = new_node
+#          new_node.next = self.head
+#          self.head = new_node
+#          new_node.prev = None
+# 
+#    def print_list(self):
+#       cur = self.head
+#       while cur:
+#          print(cur.data)
+#          cur = cur.next
+# 
+# files = open(r"Sorted_names.csv","r")
+# data = files.read().strip().split('\n')
+# print(data)
+# dllist = DoublyLinkedList()
+         new_node.prev = None
+
+   def print_list(self):
+      cur = self.head
+      while cur:
+         print(cur.data)
+         cur = cur.next
+
+files = open(r"Sorted_names.csv","r")
+data = files.read().strip().split('\n')
+print(data)
+dllist = DoublyLinkedList()
+# for d in data:
+#
+#    dllist.append(d)
+#
+#
+# dllist.print_list()
+
+#
+#Implement and analyse the data structure: binary tree
+# class Node:
+#    def __init__(self, val):
+#       self.leftchild = None
+#       self.rightchild = None
+#       self.value = val
+#    def insert(self,data):
+#        if self.value == data:
+#            return False
+#        elif self.value>data:
+#            if self.leftchild:
+#                return self.leftchild.insert(data)
+#            else:
+#                self.leftchild = Node(data)
+#                return True
+#        else:
+#            if self.rightchild:
+#                return self.rightchild.insert(data)
+#            else:
+#                self.rightchild = Node(data)
+#                return True
+# 
+#    def find(self, data):
+#        if (self.value == data):
+#            return True
+#        elif self.value > data:
+#            if self.leftchild:
+#                return self.leftchild.find(data)
+#            else:
+#              return False
+#        else:
+#            return False
+#    def preorder(self):
+#        if self:
+#            print(self.value)
+#            if self.leftchild:
+#                self.leftchild.preorder()
+#            if self.rightchild:
+#                self.rightchild.preorder()
+# 
+#    def postorder(self):
+#        if self:
+#            if self.leftchild:
+#                self.leftchild.postorder()
+#            if self.rightchild:
+#                self.rightchild.postorder()
+#            print(self.value)
+#    def inorder(self):
+#        if self:
+#            if self.leftchild:
+#                self.leftchild.inorder()
+#            print(self.value)
+#            if self.rightchild:
+#                self.rightchild.inorder()
+# 
+# class Tree:
+#     def __init__(self):
+#         self.root = None
+# 
+#     def insert(self, data):
+#         if self.root:
+#             return self.root.insert(data)
+#         else:
+#             self.root = Node(data)
+#             return True
+#     def find(self,data):
+#         if self.root:
+#             return self.root.find(data)
+#         else:
+#             return False
+#     #treversal function
+#     def preorder(self):
+#         print("Preorder")
+#         self.root.preorder()
+# 
+#     def postorder(self):
+#         print("Postorder")
+#         self.root.postorder()
+# 
+#     def inorder(self):
+#         print("Inorder")
+#         self.root.inorder()
+# 
+# bst = Tree()
+# bst.insert('Andrew Williams')
+# bst.insert('Carter king')
+# bst.insert('David Brown')
+# bst.insert('Jackson Lee')
+# bst.insert('John Smith')
+# bst.insert('Luke Anderson')
+# bst.insert('Taylor Jones')
+# bst.insert('William Thompson')
+# bst.preorder()
+# # bst.postorder()
+# # bst.inorder()
+#1.5 1.5	Implement and analyse the data structure using hash function
+
+person_objects = ['Andrew Williams', 'Carter King', 'David Brown', 'Jackson Lee', 'John Smith', 'Luke Anderson', 'Taylor Jones', 'William Thompson']
+# hashed_person_objects = []
+# for person in person_objects:
+#     hasedvalue = hash(person)
+#     hashed_person_objects.append(hasedvalue)
+# 
+# print(hashed_person_objects)
+# # zip_iterator = zip(hashed_person_objects,person_objects)
+# # hash_values = dict(zip_iterator)
+# # print(hash_values)
+# 
+# #method -2 to create dictionary from 2 list
+# hash_values = {}
+# for values in hashed_person_objects:
+#     for person in person_objects:
+#         hash_values[values] = person
+#         person_objects.remove(person)
+#         break
+# print(hash_values)
+
